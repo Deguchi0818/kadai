@@ -1,5 +1,5 @@
-ï»¿// CreateDefaultScene.cpp
-// ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚·ãƒ¼ãƒ³ã‚’ç”Ÿæˆã—ã¾ã™
+// CreateDefaultScene.cpp
+// ƒfƒtƒHƒ‹ƒg‚ÌƒV[ƒ“‚ğ¶¬‚µ‚Ü‚·
 
 #include <numbers>
 
@@ -28,36 +28,36 @@ using namespace UniDx;
 
 void MainGame::createMap()
 {
-    // ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ä½œæˆ
+    // ƒ}ƒbƒvƒf[ƒ^ì¬
     MapData::create();
     MapData::getInstance()->load("resource/map_data.txt");
 
-    // ãƒãƒ†ãƒªã‚¢ãƒ«ã®ä½œæˆ
+    // ƒ}ƒeƒŠƒAƒ‹‚Ìì¬
     auto wallMat = std::make_shared<Material>();
     auto floorMat = std::make_shared<Material>();
     auto coinMat = std::make_shared<Material>();
 
-    // ã‚·ã‚§ãƒ¼ãƒ€ã‚’æŒ‡å®šã—ã¦ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
+    // ƒVƒF[ƒ_‚ğw’è‚µ‚ÄƒRƒ“ƒpƒCƒ‹
     wallMat->shader->compile<VertexPNT>(u8"resource/AlbedoShadeSpec.hlsl");
     floorMat->shader->compile<VertexPNT>(u8"resource/AlbedoShadeSpec.hlsl");
     floorMat->color = Color(0.85f, 0.8f, 0.85f);
     coinMat->shader->compile<VertexPN>(u8"resource/ShadeSpec.hlsl");
     coinMat->color = Color(1.0f, 0.9f, 0.1f);
 
-    // åºŠãƒ†ã‚¯ã‚¹ãƒãƒ£ä½œæˆ
+    // °ƒeƒNƒXƒ`ƒƒì¬
     auto floorTex = std::make_shared<Texture>();
     floorTex->Load(u8"resource/floor.png");
     floorMat->AddTexture(std::move(floorTex));
 
-    // å£ãƒ†ã‚¯ã‚¹ãƒãƒ£ä½œæˆ
+    // •ÇƒeƒNƒXƒ`ƒƒì¬
     auto wallTex = std::make_shared<Texture>();
     wallTex->Load(u8"resource/wall.png");
     wallMat->AddTexture(std::move(wallTex));
 
-    // ãƒãƒƒãƒ—ä½œæˆ
+    // ƒ}ƒbƒvì¬
     auto map = make_unique<GameObject>();
 
-    // å„ãƒ–ãƒ­ãƒƒã‚¯ä½œæˆ
+    // ŠeƒuƒƒbƒNì¬
     for (int i = 0; i < MapData::getInstance()->getWidth(); i++)
     {
         for (int j = 0; j < MapData::getInstance()->getHeight(); j++)
@@ -70,8 +70,8 @@ void MainGame::createMap()
                 rb->gravityScale = 0;
                 rb->mass = numeric_limits<float>::infinity();
 
-                // å£ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
-                auto wall = make_unique<GameObject>(u8"å£",
+                // •ÇƒIƒuƒWƒFƒNƒg‚ğì¬
+                auto wall = make_unique<GameObject>(u8"•Ç",
                     CubeRenderer::create<VertexPNT>(wallMat),
                     move(rb),
                     make_unique<AABBCollider>());
@@ -82,14 +82,14 @@ void MainGame::createMap()
                     j * -2 + float(MapData::getInstance()->getHeight() / 2) * 2
                 );
 
-                // å£ã®è¦ªã‚’ãƒãƒƒãƒ—ã«ã™ã‚‹
+                // •Ç‚Ìe‚ğƒ}ƒbƒv‚É‚·‚é
                 Transform::SetParent(move(wall), map->transform);
             }
             break;
 
             case 'C':
             {
-                // ã‚³ã‚¤ãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆ
+                // ƒRƒCƒ“ƒIƒuƒWƒFƒNƒg‚ğì¬
                 auto coin = make_unique<GameObject>(u8"Coin",
                     make_unique<GltfModel>(),
                     make_unique<Rigidbody>(),
@@ -107,7 +107,7 @@ void MainGame::createMap()
                 );
                 coin->transform->localScale = Vector3(3, 3, 3);
 
-                // ã‚³ã‚¤ãƒ³ã®è¦ªã‚’ãƒãƒƒãƒ—ã«ã™ã‚‹
+                // ƒRƒCƒ“‚Ìe‚ğƒ}ƒbƒv‚É‚·‚é
                 Transform::SetParent(move(coin), map->transform);
             }
             break;
@@ -116,13 +116,13 @@ void MainGame::createMap()
                 break;
             }
 
-            // åºŠ
+            // °
             if (i % 2 == 0 && j % 2 == 0)
             {
                 auto rb = make_unique<Rigidbody>();
                 rb->gravityScale = 0;
                 rb->mass = numeric_limits<float>::infinity();
-                auto floor = make_unique<GameObject>(u8"åºŠ",
+                auto floor = make_unique<GameObject>(u8"°",
                     CubeRenderer::create<VertexPNT>(floorMat),
                     move(rb),
                     make_unique<AABBCollider>());
@@ -133,7 +133,7 @@ void MainGame::createMap()
                     j * -2 + float(MapData::getInstance()->getHeight() / 2) * 2 - 1.0f
                 );
 
-                // å£ã®è¦ªã‚’ãƒãƒƒãƒ—ã«ã™ã‚‹
+                // •Ç‚Ìe‚ğƒ}ƒbƒv‚É‚·‚é
                 Transform::SetParent(move(floor), map->transform);
             }
         }
@@ -145,8 +145,8 @@ void MainGame::createMap()
 
 unique_ptr<UniDx::Scene> MainGame::CreateScene()
 {
-    // -- ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ --
-    auto playerObj = make_unique<GameObject>(u8"ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼",
+    // -- ƒvƒŒƒCƒ„[ --
+    auto playerObj = make_unique<GameObject>(u8"ƒvƒŒƒCƒ„[",
         make_unique<GltfModel>(),
         make_unique<Rigidbody>(),
         make_unique<SphereCollider>(Vector3(0, 0.25f, 0)),
@@ -159,43 +159,64 @@ unique_ptr<UniDx::Scene> MainGame::CreateScene()
     playerObj->transform->localPosition = Vector3(0, -1, 0);
     playerObj->transform->localRotation = Quaternion::Euler(0, 180, 0);
 
-    // -- ã‚«ãƒ¡ãƒ© --
+	// -- ƒvƒŒƒCƒ„[ƒ‰ƒCƒg --
+	//auto pLightObj = make_unique<GameObject>(u8"ƒvƒŒƒCƒ„[ƒ‰ƒCƒg",
+	//	make_unique<Light>());
+	//auto pLight = pLightObj->GetComponent<Light>(true);
+	//pLight->type = LightType_Point;
+	//pLight->range = 3.0f;
+	//pLight->intensity = 1.0f;
+    //pLightObj->transform->localPosition = Vector3(0, 2.0f, 0);
+    //Transform::SetParent(move(pLightObj), playerObj->transform);
+
+	// -- ‰ù’†“d“” --
+    auto flashlight = make_unique<GameObject>(u8"‰ù’†“d“”");
+    auto lightComp = flashlight->AddComponent<Light>();
+	lightComp->type = LightType_Spot;
+	lightComp->range = 10.0f;
+	lightComp->spotAngle = 60.0f;
+	lightComp->intensity = 1.0f;
+    flashlight->transform->localPosition = Vector3(0, 0.5f, 0);
+
+    Transform::SetParent(move(flashlight), playerObj->transform);
+
+    // -- ƒJƒƒ‰ --
     auto cameraBehaviour = make_unique<CameraController>();
     cameraBehaviour->player = playerObj->GetComponent<Player>(true);
 
-    // -- ãƒ©ã‚¤ãƒˆ --
-    LightManager::getInstance()->ambientColor = Color(0.3f, 0.3f, 0.3f, 1.0f);
+    // -- ƒ‰ƒCƒg --
+    LightManager::getInstance()->ambientColor = Color(0.05f, 0.05f, 0.05f, 1.0f);
 
-    auto lights = make_unique<GameObject>(u8"ãƒ©ã‚¤ãƒˆç¾¤");
-    auto light = make_unique<GameObject>(u8"ãƒ‡ã‚£ãƒ¬ã‚¯ã‚·ãƒ§ãƒŠãƒ«ãƒ©ã‚¤ãƒˆ", make_unique<Light>(), make_unique<LightController>());
-    light->transform->localPosition = Vector3(4, 3, 0);
-    light->GetComponent<Light>(true)->intensity = 0.4f;
-    Transform::SetParent(move(light), lights->transform);
+    //auto lights = make_unique<GameObject>(u8"ƒ‰ƒCƒgŒQ");
+    //auto light = make_unique<GameObject>(u8"ƒfƒBƒŒƒNƒVƒ‡ƒiƒ‹ƒ‰ƒCƒg", make_unique<Light>(), make_unique<LightController>());
+    //light->transform->localPosition = Vector3(4, 3, 0);
+    //light->GetComponent<Light>(true)->intensity = 0.4f;
+    //Transform::SetParent(move(light), lights->transform);
 
-    for (int i = 0; i < 2; ++i)
-    {
-        for (int j = 0; j < 2; ++j)
-        {
-            auto l = make_unique<Light>();
-            l->type = LightType_Point;
-            l->range = 10.0f;
+    //for (int i = 0; i < 2; ++i)
+    //{
+    //    for (int j = 0; j < 2; ++j)
+    //    {
+    //        auto l = make_unique<Light>();
+    //        l->type = LightType_Point;
+    //        l->range = 10.0f;
 
-            auto light = make_unique<GameObject>(u8"ãƒã‚¤ãƒ³ãƒˆãƒ©ã‚¤ãƒˆ",
-                move(l),
-                make_unique<LightController>());
-            light->transform->localPosition = Vector3(10.0f * j - 5.0f, 4,  10.0f * i - 5.0f);
-            Transform::SetParent(move(light), lights->transform);
-        }
-    }
+    //        auto light = make_unique<GameObject>(u8"ƒ|ƒCƒ“ƒgƒ‰ƒCƒg",
+    //            move(l),
+    //            make_unique<LightController>());
+    //        light->transform->localPosition = Vector3(10.0f * j - 5.0f, 4,  10.0f * i - 5.0f);
+    //        Transform::SetParent(move(light), lights->transform);
+    //    }
+    //}
 
     // -- UI --
     auto font = make_shared<Font>();
     font->Load(u8"resource/M PLUS 1.spritefont");
     auto textMesh = make_unique<TextMesh>();
     textMesh->font = font;
-    textMesh->text = u8"WASD:ã„ã©ã†\nIJKL:ã‚«ãƒ¡ãƒ©\nOP:ãƒ©ã‚¤ãƒˆ";
+    textMesh->text = u8"WASD:‚¢‚Ç‚¤\nIJKL:ƒJƒƒ‰\nOP:ƒ‰ƒCƒg";
 
-    auto textObj = make_unique<GameObject>(u8"ãƒ†ã‚­ã‚¹ãƒˆ", textMesh);
+    auto textObj = make_unique<GameObject>(u8"ƒeƒLƒXƒg", textMesh);
     textObj->transform->localPosition = Vector3(100, 20, 0);
     textObj->transform->localScale = Vector3(0.6f, 0.6f, 1.0f);
 
@@ -204,26 +225,26 @@ unique_ptr<UniDx::Scene> MainGame::CreateScene()
     scoreMesh->text = u8"0";
     scoreTextMesh = scoreMesh.get();
 
-    auto scoreTextObj = make_unique<GameObject>(u8"ã‚¹ã‚³ã‚¢", scoreMesh);
+    auto scoreTextObj = make_unique<GameObject>(u8"ƒXƒRƒA", scoreMesh);
     scoreTextObj->transform->localPosition = Vector3(480, 20, 0);
 
     auto canvas = make_unique<Canvas>();
     canvas->LoadDefaultMaterial(u8"resource");
 
-    // -- ãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ --
+    // -- ƒ}ƒbƒvƒf[ƒ^ --
     createMap();
 
-    // ã‚·ãƒ¼ãƒ³ã‚’ä½œã£ã¦æˆ»ã™
+    // ƒV[ƒ“‚ğì‚Á‚Ä–ß‚·
     return make_unique<Scene>(
 
-        make_unique<GameObject>(u8"ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒ«ãƒ¼ãƒˆ",
+        make_unique<GameObject>(u8"ƒIƒuƒWƒFƒNƒgƒ‹[ƒg",
             move(playerObj),
             move(mapObj)
         ),
 
-        move(lights),
+        //move(lights),
 
-        make_unique<GameObject>(u8"ã‚«ãƒ¡ãƒ©ãƒ«ãƒ¼ãƒˆ", Vector3(0, 3, -5),
+        make_unique<GameObject>(u8"ƒJƒƒ‰ƒ‹[ƒg", Vector3(0, 3, -5),
             make_unique<Camera>(),
             move(cameraBehaviour)
         ),

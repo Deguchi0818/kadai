@@ -43,5 +43,11 @@ void CameraController::Update()
     }
     Quaternion rot = Quaternion::Euler(pitch, yaw, 0.0f);
     transform->rotation = rot;
-    transform->position = (Vector3::forward * rot) * -length + player->transform->position;
+    //transform->position = (Vector3::forward * rot) * -length + player->transform->position;
+    float eyeHeight = 1.5f;
+    float forwardOffset = 0.5f;
+    Vector3 forwardDir = transform->forward;
+    transform->position = player->transform->position
+        + Vector3(0, eyeHeight, 0)
+        + forwardDir * forwardOffset;
 }

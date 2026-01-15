@@ -64,12 +64,15 @@ void Player::Update()
     Vector3 camF = Camera::main->transform->forward;
     float camAngle = std::atan2(camF.x, camF.z) * UniDx::Rad2Deg;
     Vector3 velocity = (cont.normalized() * moveSpeed) * Quaternion::AngleAxis(camAngle, Vector3::up);
-    float vAngle = std::atan2(velocity.x, velocity.z) * UniDx::Rad2Deg;
+    //float vAngle = std::atan2(velocity.x, velocity.z) * UniDx::Rad2Deg;
 
     rb->linearVelocity = velocity;
+
+    rb->rotation = Quaternion::Euler(0, camAngle, 0);
+
     if (cont != Vector3::zero)
     {
-        rb->rotation = Quaternion::Euler(0, vAngle, 0);
+        
     }
 
     // アニメ（未対応）
