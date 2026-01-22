@@ -1,8 +1,4 @@
-﻿/**
- * @file PlayerLoop.h
- * @brief フレームワーク全体のループ処理を行うクラス
- */
-#pragma once
+﻿#pragma once
 
 #include <windows.h>
 #include <Keyboard.h>
@@ -17,6 +13,7 @@ class Camera;
 class Canvas;
 
 /**
+ * @file PlayerLoop.h
  * @brief フレームワーク全体のループ処理を行うクラス。
  * Unityでは実行リストが作られるが、簡略化のため、全てのGameObjectとComponentを巡回して実行する。
  */
@@ -29,7 +26,7 @@ public:
      */
     virtual void Initialize(HWND hWnd);
 
-    /// @brief ゲーム全体のメインループ
+    /** @brief ゲーム全体のメインループ */
     virtual int MainLoop();
 
     void ProcessKeyboardMessage(UINT message, WPARAM wParam, LPARAM lParam)

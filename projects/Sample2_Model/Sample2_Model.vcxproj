@@ -222,18 +222,6 @@
       <FileType>Document</FileType>
     </CopyFileToFolders>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\resource\Pumpkin-carved-lit-a.glb" />
-    <None Include="..\resource\space_frigate_0.glb" />
-  </ItemGroup>
-  <ItemGroup>
-    <CopyFileToFolders Include="..\resource\Albedo.hlsl">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\resource\AlbedoShade.hlsl">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

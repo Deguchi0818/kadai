@@ -1,7 +1,3 @@
-﻿/**
- * @file Behaviour.h
- * @brief GameObjectの挙動を記述する基底コンポーネント
- */
 #pragma once
 
 #include "Component.h"
@@ -12,7 +8,9 @@ namespace UniDx {
 class Collider;
 struct Collision;
 
-/// @brief GameObjectの挙動を記述する基底コンポーネント。UnityのMonoBehaviour相当
+// --------------------
+// Behaviour基底クラス
+// --------------------
 class Behaviour : public Component
 {
 public:

@@ -42,8 +42,8 @@ struct ConstantBufferPerCamera
 /* HLSL
 cbuffer CBPerCamera : register(b8)
 {
-    row_major float4x4 view;
-    row_major float4x4 projection;
+    float4x4 view;
+    float4x4 projection;
     float3   cameraPosW;
     float    cameraNear;
     float3   cameraForwardW;
@@ -62,18 +62,19 @@ struct ConstantBufferPerObject
 /* HLSL
 cbuffer CBPerObject : register(b9)
 {
-    row_major float4x4 world;
+    float4x4 world;
 };
 */
 struct ConstantBufferSkinPerObject
 {
     Matrix4x4 world;
     BoneMat3x4 bones[SkinMeshBoneMax];
+//    Matrix4x4 bones[SkinMeshBoneMax];
 };
 /* HLSL
 cbuffer CBSkinPerObject : register(b9)
 {
-    row_major float4x4 world;
+    float4x4 world;
     BoneMat3x4 bones[256];
 };
 */
