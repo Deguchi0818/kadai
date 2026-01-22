@@ -17,6 +17,7 @@
 #include "Player.h"
 #include "MapData.h"
 #include "LightController.h"
+#include "Enemy.h"
 
 #include <thread>
 #include "MainGame.h"
@@ -36,6 +37,7 @@ void MainGame::createMap()
     auto wallMat = std::make_shared<Material>();
     auto floorMat = std::make_shared<Material>();
     auto coinMat = std::make_shared<Material>();
+    auto EnemyMat = std::make_shared<Material>();
 
     // シェーダを指定してコンパイル
     wallMat->shader->compile<VertexPNT>(u8"resource/AlbedoShadeSpec.hlsl");
@@ -43,6 +45,8 @@ void MainGame::createMap()
     floorMat->color = Color(0.85f, 0.8f, 0.85f);
     coinMat->shader->compile<VertexPN>(u8"resource/ShadeSpec.hlsl");
     coinMat->color = Color(1.0f, 0.9f, 0.1f);
+    EnemyMat->shader->compile<VertexPN>(u8"resource/ShadeSpec.hlsl");
+    EnemyMat->color = Color(1.0f, 0.4f, 0.4f);
 
     // 床テクスチャ作成
     auto floorTex = std::make_shared<Texture>();
@@ -109,6 +113,30 @@ void MainGame::createMap()
 
                 // コインの親をマップにする
                 Transform::SetParent(move(coin), map->transform);
+            }
+            break;
+
+            case 'E':
+            {
+                auto enemyObj = make_unique<GameObject>(u8"Enemy",
+                    make_unique<GltfModel>(),
+                    make_unique<Rigidbody>(),
+                    make_unique<SphereCollider>(Vector3(0, 0.25f, 0), 0.9f),
+                    make_unique<Enemy>()
+                );
+
+                // モデルのロード (カボチャモデル等を使うと雰囲気が出ます)
+                auto model = enemyObj->GetComponent<GltfModel>(true);
+                model->Load<VertexPN>(u8"resource/Pumpkin-carved-lit-a.glb",
+                    EnemyMat);
+
+                enemyObj->transform->localPosition = Vector3(
+                    i * 2 - float(MapData::getInstance()->getWidth() / 2) * 2,
+                    -0.5f,
+                    j * -2 + float(MapData::getInstance()->getHeight() / 2) * 2
+                );
+
+                Transform::SetParent(move(enemyObj), map->transform);
             }
             break;
 

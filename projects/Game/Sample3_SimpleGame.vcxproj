@@ -191,6 +191,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\CameraController.h" />
+    <ClInclude Include="include\Enemy.h" />
     <ClInclude Include="include\framework.h" />
     <ClInclude Include="include\LightController.h" />
     <ClInclude Include="include\main.h" />
@@ -203,6 +204,7 @@
   <ItemGroup>
     <ClCompile Include="src\CameraController.cpp" />
     <ClCompile Include="src\CreateDefaultScene.cpp" />
+    <ClCompile Include="src\Enemy.cpp" />
     <ClCompile Include="src\LightController.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MainGame.cpp" />
