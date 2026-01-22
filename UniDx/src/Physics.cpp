@@ -26,14 +26,14 @@ namespace UniDx
     void PhysicsShape::collideCallback()
     {
         // トリガーコールバック
-        for(auto other : triggersNew_)
+        for (auto other : triggersNew_)
         {
             auto inOld = std::ranges::find(triggers_, other);
-            if(inOld == triggers_.end())
+            if (inOld == triggers_.end())
             {
                 // 以前のリストに含まれていない＝新規
                 getCollider()->gameObject->onTriggerEnter(other);
-                if(!isValid()) return;
+                if (!isValid()) return;
             }
             else
             {
@@ -43,14 +43,14 @@ namespace UniDx
 
             // 新しいほうに含まれているので、Stay
             getCollider()->gameObject->onTriggerStay(other);
-            if(!isValid()) return;
+            if (!isValid()) return;
         }
 
         // 新しいリストになくて古いほうに残っている=離れた
-        for(auto other : triggers_)
+        for (auto other : triggers_)
         {
             getCollider()->gameObject->onTriggerExit(other);
-            if(!isValid()) return;
+            if (!isValid()) return;
         }
 
         // 古いほうを削除して新しいほうを古いほうに
@@ -58,14 +58,14 @@ namespace UniDx
         std::swap(triggers_, triggersNew_);
 
         // 衝突コールバック
-        for(const auto& collision : collisionsNew_)
+        for (const auto& collision : collisionsNew_)
         {
             const auto& inOld = std::ranges::find_if(collisions_, [collision](auto i) {return i.collider == collision.collider; });
-            if(inOld == collisions_.end())
+            if (inOld == collisions_.end())
             {
                 // 以前のリストに含まれていない＝新規
                 getCollider()->gameObject->onCollisionEnter(collision);
-                if(!isValid()) return;
+                if (!isValid()) return;
             }
             else
             {
@@ -75,14 +75,14 @@ namespace UniDx
 
             // 新しいほうに含まれているので、Stay
             getCollider()->gameObject->onCollisionStay(collision);
-            if(!isValid()) return;
+            if (!isValid()) return;
         }
 
         // 新しいリストになくて古いほうに残っている=離れた
-        for(auto col : collisions_)
+        for (auto col : collisions_)
         {
             getCollider()->gameObject->onCollisionExit(col);
-            if(!isValid()) return;
+            if (!isValid()) return;
         }
 
         // 古いほうを削除して新しいほうを古いほうに
@@ -121,14 +121,14 @@ namespace UniDx
     // 3D形状を持ったコライダーを登録
     void Physics::register3d(Collider* collider)
     {
-        for(size_t i = 0; i < physicsShapes.size(); ++i)
+        for (size_t i = 0; i < physicsShapes.size(); ++i)
         {
-            if(!physicsShapes[i].isValid())
+            if (!physicsShapes[i].isValid())
             {
                 physicsShapes[i].initialize(collider);
                 return;
             }
-            if(physicsShapes[i].getCollider() == collider)
+            if (physicsShapes[i].getCollider() == collider)
             {
                 return; // 登録済み
             }
@@ -143,9 +143,9 @@ namespace UniDx
     // 3D形状を持ったコライダーの登録を解除
     void Physics::unregister3d(Collider* collider)
     {
-        for(size_t i = 0; i < physicsShapes.size(); ++i)
+        for (size_t i = 0; i < physicsShapes.size(); ++i)
         {
-            if(physicsShapes[i].getCollider() == collider)
+            if (physicsShapes[i].getCollider() == collider)
             {
                 physicsShapes[i].setInvalid();
                 return;
@@ -158,9 +158,9 @@ namespace UniDx
     void Physics::initializeSimulate(float step)
     {
         // 無効になっているものをvectorから削除
-        for(auto it = physicsActors.begin(); it != physicsActors.end();)
+        for (auto it = physicsActors.begin(); it != physicsActors.end();)
         {
-            if(!it->second.isValid())
+            if (!it->second.isValid())
             {
                 it = physicsActors.erase(it);
             }
@@ -171,9 +171,9 @@ namespace UniDx
         }
 
         // 無効になっているシェイプを削除
-        for(vector<PhysicsShape>::iterator it = physicsShapes.begin(); it != physicsShapes.end();)
+        for (vector<PhysicsShape>::iterator it = physicsShapes.begin(); it != physicsShapes.end();)
         {
-            if(!it->isValid())
+            if (!it->isValid())
             {
                 it = physicsShapes.erase(it);
             }
@@ -184,29 +184,29 @@ namespace UniDx
         }
 
         // Rigidbodyの更新
-        for(auto& act : physicsActors)
+        for (auto& act : physicsActors)
         {
             act.second.getRigidbody()->physicsUpdate();
             act.second.initCorrectBounds();
         }
 
         // Shapeの移動Boundsと次に当たるコライダーを初期化
-        for(auto& shape : physicsShapes)
+        for (auto& shape : physicsShapes)
         {
             shape.initOtherNew();
 
             Bounds bounds = shape.getCollider()->getBounds();
             auto rb = shape.getCollider()->attachedRigidbody;
-            if(rb != nullptr)
+            if (rb != nullptr)
             {
                 bounds.Encapsulate(bounds.min() + rb->getMoveVector(step));
                 bounds.Encapsulate(bounds.max() + rb->getMoveVector(step));
             }
             shape.moveBounds = bounds;
             Rigidbody* r = shape.getCollider()->attachedRigidbody;
-            if(r != nullptr)
+            if (r != nullptr)
             {
-                if(shape.actor == nullptr)
+                if (shape.actor == nullptr)
                 {
                     shape.actor = &physicsActors.at(r);
                 }
@@ -240,9 +240,9 @@ namespace UniDx
         totalInsert += std::chrono::duration_cast<std::chrono::microseconds>(insert - start).count() * 0.001;
         physicsGrid->gatherPairs();
 #else
-        for(size_t i = 0; i < physicsShapes.size(); ++i)
+        for (size_t i = 0; i < physicsShapes.size(); ++i)
         {
-            for(size_t j = i + 1; j < physicsShapes.size(); ++j)
+            for (size_t j = i + 1; j < physicsShapes.size(); ++j)
             {
                 checkBounds(&physicsShapes[i], &physicsShapes[j]);
             }
@@ -252,25 +252,25 @@ namespace UniDx
         std::chrono::microseconds elapsed = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
         totalTime += elapsed.count() * 0.001;
         timeCount++;
-        if(timeCount % 100 == 0)
+        if (timeCount % 100 == 0)
         {
-            //            Debug::Log(totalInsert);
-            //            Debug::Log(totalTime);
+//            Debug::Log(totalInsert);
+//            Debug::Log(totalTime);
             totalInsert = 0.0;
             totalTime = 0.0;
             timeCount = 0;
         }
 
         // 先に位置を更新する
-        for(auto& act : physicsActors)
+        for (auto& act : physicsActors)
         {
             act.second.getRigidbody()->applyMove(step);
         }
 
         // トリガーチェックする
-        for(auto& pair : potentialPairsTrigger)
+        for (auto& pair : potentialPairsTrigger)
         {
-            if(pair.first->getCollider()->intersects(pair.second->getCollider()))
+            if (pair.first->getCollider()->intersects(pair.second->getCollider()))
             {
                 pair.first->addTrigger(pair.second->getCollider());
                 pair.second->addTrigger(pair.first->getCollider());
@@ -278,9 +278,9 @@ namespace UniDx
         }
 
         // 衝突をチェックする
-        for(auto& pair : potentialPairs)
+        for (auto& pair : potentialPairs)
         {
-            if(pair.first->getCollider()->checkIntersect(pair.second->getCollider(), pair.first->actor, pair.second->actor))
+            if (pair.first->getCollider()->checkIntersect(pair.second->getCollider(), pair.first->actor, pair.second->actor))
             {
                 Collision ca;
                 ca.collider = pair.second->getCollider();
@@ -293,16 +293,16 @@ namespace UniDx
         }
 
         // 衝突で生じた補正を含めて位置と速度を解決する
-        for(auto& act : physicsActors)
+        for (auto& act : physicsActors)
         {
             act.second.getRigidbody()->solveCorrection(act.second.getCorrectPositionBounds(), act.second.getCorrectVelocityBounds());
         }
 
         // OnTrigger～, OnCollision～等のコールバックを呼び出す
         // TODO: 当たったRigidbodyがついているGameObjectでも呼び出す
-        for(auto& shape : physicsShapes)
+        for (auto& shape : physicsShapes)
         {
-            if(shape.isValid())
+            if (shape.isValid())
             {
                 shape.collideCallback();
             }
@@ -311,16 +311,16 @@ namespace UniDx
 
     void Physics::checkBounds(PhysicsShape* shape1, PhysicsShape* shape2)
     {
-        if(shape1->moveBounds.Intersects(shape2->moveBounds))
+        if (shape1->moveBounds.Intersects(shape2->moveBounds))
         {
             auto rbA = shape1->getCollider()->attachedRigidbody;
             auto rbB = shape2->getCollider()->attachedRigidbody;
 
             // 同じ Rigidbody に属しているコンパウンド同士は自己衝突なのでスキップ
-            if(rbA && rbA == rbB) return;
+            if (rbA && rbA == rbB) return;
 
             // ペアを記憶
-            if(shape1->getCollider()->isTrigger || shape2->getCollider()->isTrigger)
+            if (shape1->getCollider()->isTrigger || shape2->getCollider()->isTrigger)
             {
                 // トリガー
                 potentialPairsTrigger.push_back({ shape1, shape2 });
@@ -340,16 +340,16 @@ namespace UniDx
 
         // まずは当たりそうなペアをAABBで判定して抽出
         potentialPairs.clear();
-        for(size_t i = 0; i < physicsShapes.size(); ++i)
+        for (size_t i = 0; i < physicsShapes.size(); ++i)
         {
-            for(size_t j = i + 1; j < physicsShapes.size(); ++j)
+            for (size_t j = i + 1; j < physicsShapes.size(); ++j)
             {
-                if(physicsShapes[i].moveBounds.Intersects(physicsShapes[j].moveBounds))
+                if (physicsShapes[i].moveBounds.Intersects(physicsShapes[j].moveBounds))
                 {
                     // 同じ Rigidbody に属しているコンパウンド同士は自己衝突なのでスキップ
                     auto rbA = physicsShapes[i].getCollider()->attachedRigidbody;
                     auto rbB = physicsShapes[j].getCollider()->attachedRigidbody;
-                    if(rbA && rbA == rbB) continue;
+                    if (rbA && rbA == rbB) continue;
 
                     // ペアを記憶。ここでは詳細判定しない
                     potentialPairs.push_back({ &physicsShapes[i], &physicsShapes[j] });
@@ -359,7 +359,7 @@ namespace UniDx
 
         // 形状ごとに実衝突を確定する
         manifolds.clear();
-        for(auto& pair : potentialPairs)
+        for (auto& pair : potentialPairs)
         {
             ContactManifold m;
             //        if (intersectShapes(*pair.first, *pair.second, &m)) {  // ← ここが Narrow-phase
@@ -368,7 +368,7 @@ namespace UniDx
         }
 
         // ソルバ
-        for(auto& m : manifolds)
+        for (auto& m : manifolds)
         {
             Rigidbody* rbA = m.a->getCollider()->attachedRigidbody;
             Rigidbody* rbB = m.b->getCollider()->attachedRigidbody;
@@ -386,7 +386,7 @@ namespace UniDx
     {
         const float restitution = 0.2f;   // 反発係数
 
-        for(int i = 0; i < m.numContacts; ++i)
+        for (int i = 0; i < m.numContacts; ++i)
         {
         }
     }
@@ -403,29 +403,29 @@ namespace UniDx
     {
         // 無効な方向や負の距離はヒットしない
         const float eps = 1e-6f;
-        if(maxDistance <= 0.0f) return false;
-        if(fabs(direction.x) < eps && fabs(direction.y) < eps && fabs(direction.z) < eps) return false;
+        if (maxDistance <= 0.0f) return false;
+        if (fabs(direction.x) < eps && fabs(direction.y) < eps && fabs(direction.z) < eps) return false;
 
         bool hitAny = false;
         float bestT = std::numeric_limits<float>::infinity();
 
         // 各 Collider の実装された Raycast を呼ぶ（Collider 側で始点内部は除外される）
-        for(const auto& shape : physicsShapes)
+        for (const auto& shape : physicsShapes)
         {
-            if(!shape.isValid()) continue;
+            if (!shape.isValid()) continue;
             Collider* col = shape.getCollider();
-            if(!col) continue;
+            if (!col) continue;
 
-            if(filter && !filter(col)) continue; // フィルタで除外
+            if (filter && !filter(col)) continue; // フィルタで除外
 
             RaycastHit localHit;
-            if(col->Raycast(origin, direction, maxDistance, &localHit))
+            if (col->Raycast(origin, direction, maxDistance, &localHit))
             {
                 // closest を選択（t を比較）
-                if(localHit.distance < bestT)
+                if (localHit.distance < bestT)
                 {
                     bestT = localHit.distance;
-                    if(hitInfo != nullptr)
+                    if (hitInfo != nullptr)
                     {
                         *hitInfo = localHit;
                     }

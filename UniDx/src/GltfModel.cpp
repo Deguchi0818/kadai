@@ -20,19 +20,10 @@ void ReadAccessorData(
     bool xflip,
     vector<T>& out)
 {
-    if (accessor.bufferView < 0) return;
-    const auto& bufferView = model.bufferViews[accessor.bufferView];
-    const auto& buffer = model.buffers[bufferView.buffer];
-    size_t offset = bufferView.byteOffset + accessor.byteOffset;
-    size_t count = accessor.count;
-    const unsigned char* data = buffer.data.data() + offset;
+    size_t stride, count;
+    const unsigned char* data = getAccessorData(model, accessor, stride, count);
+    if(data == nullptr) return;
     out.resize(count);
-
-    size_t stride = bufferView.byteStride;
-    if(stride == 0)
-    {
-        stride = accessor.ByteStride(bufferView);
-    }
 
     // 型チェック
     if constexpr (is_same_v<T, Vector3>) {
@@ -91,16 +82,10 @@ void ReadAccessorU8x4(
 {
     static_assert(std::tuple_size<TU8x4>::value == 4, "TU8x4 must be 4 elements");
 
-    if(accessor.bufferView < 0) return;
-    const auto& bufferView = model.bufferViews[accessor.bufferView];
-    const auto& buffer = model.buffers[bufferView.buffer];
-    const size_t offset = bufferView.byteOffset + accessor.byteOffset;
-    const size_t count = accessor.count;
-    const unsigned char* data = buffer.data.data() + offset;
+    size_t stride, count;
+    const unsigned char* data = getAccessorData(model, accessor, stride, count);
+    if(data == nullptr) return;
     out.resize(count);
-
-    size_t stride = bufferView.byteStride;
-    if(stride == 0) stride = accessor.ByteStride(bufferView);
 
     assert(accessor.type == TINYGLTF_TYPE_VEC4);
 
@@ -113,7 +98,6 @@ void ReadAccessorU8x4(
     for(size_t i = 0; i < count; ++i)
     {
         TU8x4 v{};
-
         const uint8_t* p = reinterpret_cast<const uint8_t*>(data + i * stride);
 
         if(accessor.componentType == TINYGLTF_COMPONENT_TYPE_UNSIGNED_BYTE)
@@ -121,8 +105,7 @@ void ReadAccessorU8x4(
             for(int k = 0; k < 4; ++k)
             {
                 const uint8_t raw = p[k];
-                // weights: normalized u8 でも raw はそのまま 0..255
-                v[k] = raw;
+                v[k] = raw; // weights: normalized u8 でも raw はそのまま 0..255
             }
         }
         else if(accessor.componentType == TINYGLTF_COMPONENT_TYPE_UNSIGNED_SHORT)
@@ -161,8 +144,6 @@ void ReadAccessorU8x4(
 }
 
 }
-
-
 
 
 // -----------------------------------------------------------------------------
@@ -317,12 +298,11 @@ bool GltfModel::load_(const char* filePath, bool makeTextureMaterial, std::share
                 auto& tex = textures[texIndex];
                 if (tex == nullptr)
                 {
-                    tex = GetOrCreateTextureFromGltf_(texIndex, /*isSRGB*/true);
+                    tex = getOrCreateTextureFromGltf_(texIndex, /*isSRGB*/true);
                 }
                 material->AddTexture(tex);
             }
             materials[i] = material;
-            //            AddMaterial(material); // 使うメッシュを考える
         }
     }
 
@@ -379,9 +359,118 @@ bool GltfModel::load_(const char* filePath, bool makeTextureMaterial, std::share
 
 
 // -----------------------------------------------------------------------------
+// 頂点情報を格納したプリミティブを読み取り
+// -----------------------------------------------------------------------------
+void GltfModel::readPrimitive(UniDx::Mesh* mesh, const tinygltf::Primitive& primitive)
+{
+    auto sub = make_shared<SkinnedSubMesh>();
+
+    // POSITION
+    if(auto it = primitive.attributes.find("POSITION"); it != primitive.attributes.end()) {
+        const auto& accessor = model->accessors[it->second];
+        sub->resizePositions(accessor.count);
+        ReadAccessorData(*model, accessor, true, sub->positionsData);
+    }
+
+    // NORMAL
+    if(auto it = primitive.attributes.find("NORMAL"); it != primitive.attributes.end()) {
+        const auto& accessor = model->accessors[it->second];
+        sub->resizeNormals(accessor.count);
+        ReadAccessorData(*model, accessor, true, sub->normalsData);
+    }
+    // TANGENT glTF: xyz=tangent, w=bitangent sign
+    if(auto it = primitive.attributes.find("TANGENT"); it != primitive.attributes.end()) {
+        const auto& accessor = model->accessors[it->second];
+        sub->tangentsData.resize(accessor.count);
+        ReadAccessorData(*model, accessor, true, sub->tangentsData);
+    }
+
+    // COLOR_0
+    if(auto it = primitive.attributes.find("COLOR_0"); it != primitive.attributes.end()) {
+        const auto& accessor = model->accessors[it->second];
+        sub->resizeColors(accessor.count);
+        ReadAccessorData(*model, accessor, false, sub->colorsData);
+    }
+
+    // TEXCOORD_0
+    if(auto it = primitive.attributes.find("TEXCOORD_0"); it != primitive.attributes.end()) {
+        const auto& accessor = model->accessors[it->second];
+        sub->resizeUV(accessor.count);
+        ReadAccessorData(*model, accessor, false, sub->uvData);
+    }
+    // TEXCOORD_1
+    if(auto it = primitive.attributes.find("TEXCOORD_1"); it != primitive.attributes.end()) {
+        const auto& accessor = model->accessors[it->second];
+        sub->resizeUV2(accessor.count);
+        ReadAccessorData(*model, accessor, false, sub->uv2Data);
+    }
+    // TEXCOORD_2
+    if(auto it = primitive.attributes.find("TEXCOORD_2"); it != primitive.attributes.end()) {
+        const auto& accessor = model->accessors[it->second];
+        sub->resizeUV3(accessor.count);
+        ReadAccessorData(*model, accessor, false, sub->uv3Data);
+    }
+    // TEXCOORD_3
+    if(auto it = primitive.attributes.find("TEXCOORD_3"); it != primitive.attributes.end()) {
+        const auto& accessor = model->accessors[it->second];
+        sub->resizeUV4(accessor.count);
+        ReadAccessorData(*model, accessor, false, sub->uv4Data);
+    }
+
+    // JOINTS_0 / WEIGHTS_0 (skinning)
+    if(auto it = primitive.attributes.find("JOINTS_0"); it != primitive.attributes.end()) {
+        const auto& accessor = model->accessors[it->second];
+        ReadAccessorU8x4(*model, accessor, sub->jointsData, /*isWeights*/false);
+    }
+    if(auto it = primitive.attributes.find("WEIGHTS_0"); it != primitive.attributes.end()) {
+        const auto& accessor = model->accessors[it->second];
+        ReadAccessorU8x4(*model, accessor, sub->weightsData, /*isWeights*/true);
+    }
+
+    // indices
+    if(primitive.indices >= 0) {
+        const auto& accessor = model->accessors[primitive.indices];
+        sub->resizeIndices(accessor.count);
+        auto& indices = sub->indicesData;
+
+        const auto& bufferView = model->bufferViews[accessor.bufferView];
+        const auto& buffer = model->buffers[bufferView.buffer];
+        size_t offset = bufferView.byteOffset + accessor.byteOffset;
+        const unsigned char* data = buffer.data.data() + offset;
+
+        if(accessor.componentType == TINYGLTF_COMPONENT_TYPE_UNSIGNED_INT) {
+            // 32bit index
+            memcpy(indices.data(), data, accessor.count * sizeof(uint32_t));
+        }
+        else if(accessor.componentType == TINYGLTF_COMPONENT_TYPE_UNSIGNED_SHORT) {
+            // 16bit index → 32bitへ変換
+            for(size_t i = 0; i < accessor.count; ++i) {
+                indices[i] = reinterpret_cast<const uint16_t*>(data)[i];
+            }
+        }
+        else if(accessor.componentType == TINYGLTF_COMPONENT_TYPE_UNSIGNED_BYTE) {
+            // 8bit index → 32bitへ変換
+            for(size_t i = 0; i < accessor.count; ++i) {
+                indices[i] = data[i];
+            }
+        }
+
+        for(size_t i = 0; i + 2 < accessor.count; i += 3)
+        {
+            // 座標系の反転で表裏が変わるので、インデクスを入れ替え
+            std::swap(indices[i + 1], indices[i + 2]);
+        }
+    }
+
+    sub->topology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+    mesh->submesh.push_back(sub);
+}
+
+
+// -----------------------------------------------------------------------------
 // glTF内包テクスチャを生成（baseColor用途など）
 // -----------------------------------------------------------------------------
-std::shared_ptr<Texture> GltfModel::GetOrCreateTextureFromGltf_(int textureIndex, bool isSRGB)
+std::shared_ptr<Texture> GltfModel::getOrCreateTextureFromGltf_(int textureIndex, bool isSRGB)
 {
     if (!model) return nullptr;
     if (textureIndex < 0 || textureIndex >= static_cast<int>(model->textures.size())) return nullptr;
@@ -462,16 +551,15 @@ void GltfModel::createNodeRecursive(const tinygltf::Model& model,
     assert(parentGO);
 
     // GameObject を作成
-    unique_ptr<GameObject> go = make_unique<GameObject>();
-    go->SetName(StringId::intern(node.name));
-//    Debug::Log(go->name.get());
+    unique_ptr<GameObject> go = make_unique<GameObject>(StringId::intern(node.name));
+    Debug::Log(go->name);
 
     // 行列を取得
     Matrix4x4 localRH;
     if (!node.matrix.empty())
     {
-        // 4x4行列が直接指定されている場合は
-        // glTFは列優先行列で最初が１列、UniDxは行優先行列で最初が１行なので、結果的に順番コピーでOK
+        // 4x4行列が直接指定されている場合
+        // glTFは列ベクトルで最初の列から、UniDxは行ベクトルで最初の行からなので、結果的に順番コピーでOK
         for (int i = 0; i < 16; ++i)
         {
             reinterpret_cast<float*>(&localRH)[i] = static_cast<float>(node.matrix[i]);

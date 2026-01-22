@@ -18,6 +18,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -92,6 +93,9 @@ $(function(){initNavTree('class_uni_dx_1_1_game_object.html','','class_uni_dx_1_
 </div><!--header-->
 <div class="contents">
 
+<p>キャラクターや背景カメラなどの基礎となるオブジェクト  
+ <a href="#details">[詳解]</a></p>
+
 <p><code>#include &lt;<a class="el" href="_game_object_8h_source.html">GameObject.h</a>&gt;</code></p>
 <div class="dynheader">
 UniDx::GameObject の継承関係図</div>
@@ -158,9 +162,11 @@ requires (!std::same_as&lt;std::remove_cvref_t&lt;First&gt;, <a class="el" href=
 <tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
 フレンド</h2></td></tr>
 <tr class="memitem:a94284444ce9df711ae71494a51c5c608" id="r_a94284444ce9df711ae71494a51c5c608"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94284444ce9df711ae71494a51c5c608">Destroy</a> (<a class="el" href="#abd1ae0824779009dd2398f6d3df4ac7d">GameObject</a> *gameObject)</td></tr>
-<tr class="memdesc:a94284444ce9df711ae71494a51c5c608"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObjectを破棄 実際に削除されるタイミングはフレームの終了時  <br /></td></tr>
+<tr class="memdesc:a94284444ce9df711ae71494a51c5c608"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObjectを破棄  <br /></td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">構築子と解体子</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">詳解</h2>
+<div class="textblock"><p>キャラクターや背景カメラなどの基礎となるオブジェクト </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">構築子と解体子</h2>
 <a id="abd1ae0824779009dd2398f6d3df4ac7d" name="abd1ae0824779009dd2398f6d3df4ac7d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abd1ae0824779009dd2398f6d3df4ac7d">&#9670;&#160;</a></span>GameObject() <span class="overload">[1/7]</span></h2>
 
@@ -785,7 +791,7 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>GameObjectを破棄 実際に削除されるタイミングはフレームの終了時 </p>
+<p>GameObjectを破棄 </p>
 
 </div>
 </div>

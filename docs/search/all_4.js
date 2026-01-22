@@ -12,7 +12,7 @@ var searchData=
   ['destroy_9',['Destroy',['../class_uni_dx_1_1_component.html#a41f54cd8d4e8673b4bba7bf0aa942048',1,'UniDx::Component::Destroy()'],['../class_uni_dx_1_1_game_object.html#a94284444ce9df711ae71494a51c5c608',1,'UniDx::GameObject::Destroy()'],['../namespace_uni_dx.html#ad8bf91dec8556a2468aaca923070b290',1,'UniDx::Destroy(Component *component)'],['../namespace_uni_dx.html#a97a3f71e5d7cb98c70461248c9e37975',1,'UniDx::Destroy(GameObject *gameObject)']]],
   ['destroy_10',['destroy',['../class_uni_dx_1_1_singleton.html#a9d9b46d18dea3c31f3019d080b8d5660',1,'UniDx::Singleton']]],
   ['destroydefaultscene_11',['DestroyDefaultScene',['../_scene_manager_8h.html#a39e734ef57936e711d710b6756982538',1,'SceneManager.h']]],
-  ['determinant_12',['Determinant',['../struct_uni_dx_1_1_matrix4x4.html#a12a3522bf630a1738407b6079cb2ffad',1,'UniDx::Matrix4x4']]],
+  ['determinant_12',['determinant',['../struct_uni_dx_1_1_matrix4x4.html#a709c3f32da14a54458ec49ab210a0a8f',1,'UniDx::Matrix4x4']]],
   ['directionalcolor_13',['directionalColor',['../struct_uni_dx_1_1_constant_buffer_light_per_frame.html#a732a08daeb6342f837b25c24041cd3be',1,'UniDx::ConstantBufferLightPerFrame']]],
   ['directionw_14',['directionW',['../struct_uni_dx_1_1_constant_buffer_light_per_frame.html#af51ca11728f3f083cceeef05e510a9d1',1,'UniDx::ConstantBufferLightPerFrame::directionW'],['../struct_uni_dx_1_1_spot_light_buffer.html#a05c7d8a6060e4277902f9ff6cc2390dd',1,'UniDx::SpotLightBuffer::directionW']]],
   ['dirty_15',['dirty',['../class_uni_dx_1_1_material.html#a54135174d4f32d62f226ec01f8cce4fa',1,'UniDx::Material']]],

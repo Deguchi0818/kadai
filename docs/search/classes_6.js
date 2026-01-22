@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['hash_3c_20unidx_3a_3astringid_20_3e_0',['hash&lt; UniDx::StringId &gt;',['../structstd_1_1hash_3_01_uni_dx_1_1_string_id_01_4.html',1,'std']]]
+  ['image_0',['Image',['../class_uni_dx_1_1_image.html',1,'UniDx']]],
+  ['input_1',['Input',['../class_uni_dx_1_1_input.html',1,'UniDx']]],
+  ['internpool_2',['InternPool',['../class_uni_dx_1_1_intern_pool.html',1,'UniDx']]]
 ];

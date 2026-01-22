@@ -18,6 +18,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -250,14 +251,14 @@ $(function(){initNavTree('_rigidbody_8h_source.html','',''); });
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>} <span class="comment">// namespace UniDx</span></div>
 <div class="ttc" id="a_bounds_8h_html"><div class="ttname"><a href="_bounds_8h.html">Bounds.h</a></div></div>
-<div class="ttc" id="a_component_8h_html"><div class="ttname"><a href="_component_8h.html">Component.h</a></div></div>
+<div class="ttc" id="a_component_8h_html"><div class="ttname"><a href="_component_8h.html">Component.h</a></div><div class="ttdoc">コンポーネント GameObjectにアタッチして機能を追加する基本クラス</div></div>
 <div class="ttc" id="a_debug_8h_html"><div class="ttname"><a href="_debug_8h.html">Debug.h</a></div></div>
 <div class="ttc" id="a_physics_8h_html"><div class="ttname"><a href="_physics_8h.html">Physics.h</a></div></div>
 <div class="ttc" id="a_time_8h_html"><div class="ttname"><a href="_time_8h.html">Time.h</a></div></div>
-<div class="ttc" id="a_transform_8h_html"><div class="ttname"><a href="_transform_8h.html">Transform.h</a></div></div>
+<div class="ttc" id="a_transform_8h_html"><div class="ttname"><a href="_transform_8h.html">Transform.h</a></div><div class="ttdoc">GameObjectの位置、回転、スケールを扱い、階層構造を実現する</div></div>
 <div class="ttc" id="aclass_uni_dx_1_1_component_html_a6d0d42ab64e09768b102e1621ce72f0e"><div class="ttname"><a href="class_uni_dx_1_1_component.html#a6d0d42ab64e09768b102e1621ce72f0e">UniDx::Component::Component</a></div><div class="ttdeci">Component()</div><div class="ttdef"><b>Definition</b> Component.cpp:7</div></div>
-<div class="ttc" id="aclass_uni_dx_1_1_component_html_a86927d102e6bca3cf6e222accbba3519"><div class="ttname"><a href="class_uni_dx_1_1_component.html#a86927d102e6bca3cf6e222accbba3519">UniDx::Component::enabled</a></div><div class="ttdeci">Property&lt; bool &gt; enabled</div><div class="ttdef"><b>Definition</b> Component.h:25</div></div>
-<div class="ttc" id="aclass_uni_dx_1_1_component_html_ac0c376f02458a8e1f3ed23ccc8299eab"><div class="ttname"><a href="class_uni_dx_1_1_component.html#ac0c376f02458a8e1f3ed23ccc8299eab">UniDx::Component::transform</a></div><div class="ttdeci">ReadOnlyProperty&lt; Transform * &gt; transform</div><div class="ttdef"><b>Definition</b> Component.h:26</div></div>
+<div class="ttc" id="aclass_uni_dx_1_1_component_html_a86927d102e6bca3cf6e222accbba3519"><div class="ttname"><a href="class_uni_dx_1_1_component.html#a86927d102e6bca3cf6e222accbba3519">UniDx::Component::enabled</a></div><div class="ttdeci">Property&lt; bool &gt; enabled</div><div class="ttdef"><b>Definition</b> Component.h:28</div></div>
+<div class="ttc" id="aclass_uni_dx_1_1_component_html_ac0c376f02458a8e1f3ed23ccc8299eab"><div class="ttname"><a href="class_uni_dx_1_1_component.html#ac0c376f02458a8e1f3ed23ccc8299eab">UniDx::Component::transform</a></div><div class="ttdeci">ReadOnlyProperty&lt; Transform * &gt; transform</div><div class="ttdef"><b>Definition</b> Component.h:29</div></div>
 <div class="ttc" id="aclass_uni_dx_1_1_physics_html_a2b29b5007bbde2a1b1d9714796f95761"><div class="ttname"><a href="class_uni_dx_1_1_physics.html#a2b29b5007bbde2a1b1d9714796f95761">UniDx::Physics::gravity</a></div><div class="ttdeci">static float gravity</div><div class="ttdef"><b>Definition</b> Physics.h:128</div></div>
 <div class="ttc" id="aclass_uni_dx_1_1_physics_html_aad2d525e9f030108827f91683607a2ae"><div class="ttname"><a href="class_uni_dx_1_1_physics.html#aad2d525e9f030108827f91683607a2ae">UniDx::Physics::registerRigidbody</a></div><div class="ttdeci">void registerRigidbody(Rigidbody *rigidbody)</div><div class="ttdef"><b>Definition</b> Physics.cpp:107</div></div>
 <div class="ttc" id="aclass_uni_dx_1_1_physics_html_ad7e44b1185f4060b3c80d3f3ca2bc191"><div class="ttname"><a href="class_uni_dx_1_1_physics.html#ad7e44b1185f4060b3c80d3f3ca2bc191">UniDx::Physics::unregisterRigidbody</a></div><div class="ttdeci">void unregisterRigidbody(Rigidbody *rigidbody)</div><div class="ttdef"><b>Definition</b> Physics.cpp:115</div></div>
@@ -278,7 +279,7 @@ $(function(){initNavTree('_rigidbody_8h_source.html','',''); });
 <div class="ttc" id="aclass_uni_dx_1_1_rigidbody_html_acae1d71b9c7fd0b62349e3e0c3261c8c"><div class="ttname"><a href="class_uni_dx_1_1_rigidbody.html#acae1d71b9c7fd0b62349e3e0c3261c8c">UniDx::Rigidbody::position</a></div><div class="ttdeci">Property&lt; Vector3 &gt; position</div><div class="ttdef"><b>Definition</b> Rigidbody.h:21</div></div>
 <div class="ttc" id="aclass_uni_dx_1_1_rigidbody_html_acc8d5e926398e125e8ebec4399eee055"><div class="ttname"><a href="class_uni_dx_1_1_rigidbody.html#acc8d5e926398e125e8ebec4399eee055">UniDx::Rigidbody::applyMove</a></div><div class="ttdeci">virtual void applyMove(float step)</div><div class="ttdef"><b>Definition</b> Rigidbody.h:104</div></div>
 <div class="ttc" id="aclass_uni_dx_1_1_rigidbody_html_ad6b9ea99cf79c1d49105abbfecae1b48"><div class="ttname"><a href="class_uni_dx_1_1_rigidbody.html#ad6b9ea99cf79c1d49105abbfecae1b48">UniDx::Rigidbody::OnEnable</a></div><div class="ttdeci">virtual void OnEnable() override</div><div class="ttdef"><b>Definition</b> Rigidbody.h:56</div></div>
-<div class="ttc" id="aclass_uni_dx_1_1_singleton_html_a4dbe9fdf2ac68bedfd25bf0d6c37aaae"><div class="ttname"><a href="class_uni_dx_1_1_singleton.html#a4dbe9fdf2ac68bedfd25bf0d6c37aaae">UniDx::Singleton&lt; Physics &gt;::getInstance</a></div><div class="ttdeci">static Physics * getInstance()</div><div class="ttdef"><b>Definition</b> Singleton.h:21</div></div>
+<div class="ttc" id="aclass_uni_dx_1_1_singleton_html_a4dbe9fdf2ac68bedfd25bf0d6c37aaae"><div class="ttname"><a href="class_uni_dx_1_1_singleton.html#a4dbe9fdf2ac68bedfd25bf0d6c37aaae">UniDx::Singleton&lt; Physics &gt;::getInstance</a></div><div class="ttdeci">static Physics * getInstance()</div><div class="ttdef"><b>Definition</b> Singleton.h:24</div></div>
 <div class="ttc" id="aclass_uni_dx_1_1_time_html_a8c155105ee459fcf8ad147d00f4ab9c4"><div class="ttname"><a href="class_uni_dx_1_1_time.html#a8c155105ee459fcf8ad147d00f4ab9c4">UniDx::Time::fixedDeltaTime</a></div><div class="ttdeci">static float fixedDeltaTime</div><div class="ttdef"><b>Definition</b> Time.h:14</div></div>
 <div class="ttc" id="anamespace_uni_dx_html"><div class="ttname"><a href="namespace_uni_dx.html">UniDx</a></div><div class="ttdef"><b>Definition</b> AnimationCurve.cpp:5</div></div>
 <div class="ttc" id="astruct_uni_dx_1_1_bounds_html"><div class="ttname"><a href="struct_uni_dx_1_1_bounds.html">UniDx::Bounds</a></div><div class="ttdef"><b>Definition</b> Bounds.h:20</div></div>

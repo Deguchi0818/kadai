@@ -21,18 +21,14 @@ const std::array< D3D11_INPUT_ELEMENT_DESC, 7> VertexSkin::layout =
 };
 
 
-// -----------------------------------------------------------------------------
 // SkinnedMeshRendererのコンストラクタ
-// -----------------------------------------------------------------------------
 SkinnedMeshRenderer::SkinnedMeshRenderer()
 {
     lightCount = PointLightCountMax + SpotLightCountMax;
 }
 
 
-// -----------------------------------------------------------------------------
 // 現在の姿勢をシェーダーの定数バッファに転送
-// -----------------------------------------------------------------------------
 void SkinnedMeshRenderer::createConstantBufferPerObject()
 {
     D3D11_BUFFER_DESC desc{};
@@ -46,9 +42,7 @@ void SkinnedMeshRenderer::createConstantBufferPerObject()
 }
 
 
-// -----------------------------------------------------------------------------
 // 現在の姿勢をシェーダーの定数バッファに転送
-// -----------------------------------------------------------------------------
 void SkinnedMeshRenderer::bindPerObject()
 {
     // ワールド行列を transform から合わせて作成
@@ -63,9 +57,9 @@ void SkinnedMeshRenderer::bindPerObject()
 
         for(uint32_t i = 0; i < n; ++i)
         {
-            // 最終：mesh local 空間基準へ
+            // 頂点データ → ワールド座標 → モデル座標 となる変換
             Matrix4x4 jointWorld = skin->joints[i]->localToWorldMatrix();
-            Matrix4x4 m = jointWorld * invWorld * skin->inverseBind[i];
+            Matrix4x4 m = skin->inverseBind[i] * jointWorld * invWorld;
 
             // CB用 3x4 に圧縮
             constantBuffer->bones[i] = BoneMat3x4::FromMatrix4x4(m);

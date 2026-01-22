@@ -92,5 +92,19 @@
     <CopyFileToFolders Include="..\resource\SimpleShade.hlsl">
       <Filter>リソース ファイル</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="..\resource\Albedo.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\resource\AlbedoShade.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\resource\Pumpkin-carved-lit-a.glb">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="..\resource\space_frigate_0.glb">
+      <Filter>リソース ファイル</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -32,15 +32,17 @@ var searchData=
   ['getmaterials_29',['GetMaterials',['../class_uni_dx_1_1_gltf_model.html#a11b8ffef28b2777bc47af182a9dbb272',1,'UniDx::GltfModel']]],
   ['getmatrix_30',['GetMatrix',['../class_uni_dx_1_1_material.html#a6f2322e2cf9210eda7a0989f9ba7582e',1,'UniDx::Material']]],
   ['getmovevector_31',['getMoveVector',['../class_uni_dx_1_1_rigidbody.html#a2f17b8ad3b3eaa93d5d26a4192516d23',1,'UniDx::Rigidbody']]],
-  ['getorcreatetexturefromgltf_5f_32',['GetOrCreateTextureFromGltf_',['../class_uni_dx_1_1_gltf_model.html#a70845794dea0192065d2a191ac105b24',1,'UniDx::GltfModel']]],
+  ['getorcreatetexturefromgltf_5f_32',['getOrCreateTextureFromGltf_',['../class_uni_dx_1_1_gltf_model.html#a20c5d6b194c830847b9ced24417c6fa7',1,'UniDx::GltfModel']]],
   ['getprojectionmatrix_33',['GetProjectionMatrix',['../class_uni_dx_1_1_camera.html#ad351d73894108ffeaaa7f8bf73e13f1a',1,'UniDx::Camera']]],
   ['getrigidbody_34',['getRigidbody',['../class_uni_dx_1_1_physics_actor.html#a7cd9885643cbb2732380affdf53d5f79',1,'UniDx::PhysicsActor']]],
   ['getrootgameobjects_35',['GetRootGameObjects',['../class_uni_dx_1_1_scene.html#a305aeff4f623e49121b45c7c2ceb923d',1,'UniDx::Scene']]],
   ['getscreensize_36',['getScreenSize',['../class_uni_dx_1_1_d3_d_manager.html#abd415b43a59c371a23d7640e9dcb7c63',1,'UniDx::D3DManager']]],
   ['getspritefont_37',['getSpriteFont',['../class_uni_dx_1_1_font.html#a84772b5ce3188f06701cf34aac1aee38',1,'UniDx::Font']]],
   ['getstate_38',['getState',['../class_uni_dx_1_1_random.html#a4247de7029ac0a3b01518247f006be65',1,'UniDx::Random']]],
-  ['gettextures_39',['getTextures',['../class_uni_dx_1_1_material.html#aab7847a2cdb89469ea2736d8f607895f',1,'UniDx::Material']]],
-  ['getvector_40',['GetVector',['../class_uni_dx_1_1_material.html#a8ff6735bd954091f80c7140d130539a7',1,'UniDx::Material']]],
-  ['getviewmatrix_41',['GetViewMatrix',['../class_uni_dx_1_1_camera.html#ac345bcbbffe3f538b6f328dc815ca338',1,'UniDx::Camera']]],
-  ['global_42',['global',['../class_uni_dx_1_1_random.html#a98d8568db0cd9d8f92fe1115a8004591',1,'UniDx::Random']]]
+  ['getstrings_39',['getStrings',['../class_uni_dx_1_1_intern_pool.html#a97c8095eb28a91da53c841bbd5745d8f',1,'UniDx::InternPool']]],
+  ['gettextures_40',['getTextures',['../class_uni_dx_1_1_material.html#aab7847a2cdb89469ea2736d8f607895f',1,'UniDx::Material']]],
+  ['getu16text_41',['getU16Text',['../class_uni_dx_1_1_text_mesh.html#a2c78d8e3f45ea2123cae7d042281fe4d',1,'UniDx::TextMesh']]],
+  ['getvector_42',['GetVector',['../class_uni_dx_1_1_material.html#a8ff6735bd954091f80c7140d130539a7',1,'UniDx::Material']]],
+  ['getviewmatrix_43',['GetViewMatrix',['../class_uni_dx_1_1_camera.html#ac345bcbbffe3f538b6f328dc815ca338',1,'UniDx::Camera']]],
+  ['global_44',['global',['../class_uni_dx_1_1_random.html#a98d8568db0cd9d8f92fe1115a8004591',1,'UniDx::Random']]]
 ];

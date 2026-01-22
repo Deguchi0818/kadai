@@ -18,6 +18,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -92,6 +93,9 @@ $(function(){initNavTree('class_uni_dx_1_1_component.html','','class_uni_dx_1_1_
 </div><!--header-->
 <div class="contents">
 
+<p>GameObjectにアタッチして機能を追加する基本クラス  
+ <a href="#details">[詳解]</a></p>
+
 <p><code>#include &lt;<a class="el" href="_component_8h_source.html">Component.h</a>&gt;</code></p>
 <div class="dynheader">
 UniDx::Component の継承関係図</div>
@@ -100,12 +104,12 @@ UniDx::Component の継承関係図</div>
   <img src="class_uni_dx_1_1_component.png" usemap="#UniDx_3A_3AComponent_map" alt=""/>
   <map id="UniDx_3A_3AComponent_map" name="UniDx_3A_3AComponent_map">
 <area href="class_uni_dx_1_1_object.html" alt="UniDx::Object" shape="rect" coords="1140,0,1320,24"/>
-<area href="class_uni_dx_1_1_behaviour.html" alt="UniDx::Behaviour" shape="rect" coords="285,112,465,136"/>
+<area href="class_uni_dx_1_1_behaviour.html" title="GameObjectの挙動を記述する基底コンポーネント。UnityのMonoBehaviour相当" alt="UniDx::Behaviour" shape="rect" coords="285,112,465,136"/>
 <area href="class_uni_dx_1_1_collider.html" alt="UniDx::Collider" shape="rect" coords="855,112,1035,136"/>
-<area href="class_uni_dx_1_1_gltf_model.html" alt="UniDx::GltfModel" shape="rect" coords="1045,112,1225,136"/>
-<area href="class_uni_dx_1_1_renderer.html" alt="UniDx::Renderer" shape="rect" coords="1235,112,1415,136"/>
+<area href="class_uni_dx_1_1_gltf_model.html" title="glTF形式（.glb）のモデルデータを読み込んでレンダラーを生成するコンポーネント" alt="UniDx::GltfModel" shape="rect" coords="1045,112,1225,136"/>
+<area href="class_uni_dx_1_1_renderer.html" title="3D描画を行う基本コンポーネント" alt="UniDx::Renderer" shape="rect" coords="1235,112,1415,136"/>
 <area href="class_uni_dx_1_1_rigidbody.html" alt="UniDx::Rigidbody" shape="rect" coords="1425,112,1605,136"/>
-<area href="class_uni_dx_1_1_transform.html" alt="UniDx::Transform" shape="rect" coords="1615,112,1795,136"/>
+<area href="class_uni_dx_1_1_transform.html" title="GameObjectの位置、回転、スケールを扱い、階層構造を実現するクラス GameObjectに必ず１つアタッチされている" alt="UniDx::Transform" shape="rect" coords="1615,112,1795,136"/>
 <area href="class_uni_dx_1_1_camera.html" alt="UniDx::Camera" shape="rect" coords="0,168,180,192"/>
 <area href="class_uni_dx_1_1_canvas.html" alt="UniDx::Canvas" shape="rect" coords="190,168,370,192"/>
 <area href="class_uni_dx_1_1_light.html" alt="UniDx::Light" shape="rect" coords="380,168,560,192"/>
@@ -162,7 +166,9 @@ UniDx::Component の継承関係図</div>
 <tr class="memitem:a41f54cd8d4e8673b4bba7bf0aa942048" id="r_a41f54cd8d4e8673b4bba7bf0aa942048"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41f54cd8d4e8673b4bba7bf0aa942048">Destroy</a> (<a class="el" href="#a6d0d42ab64e09768b102e1621ce72f0e">Component</a> *component)</td></tr>
 <tr class="memdesc:a41f54cd8d4e8673b4bba7bf0aa942048"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンポーネントを破棄 実際に削除されるタイミングはフレームの終了時  <br /></td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">構築子と解体子</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">詳解</h2>
+<div class="textblock"><p>GameObjectにアタッチして機能を追加する基本クラス </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">構築子と解体子</h2>
 <a id="adfaad805015736afd6d469fab365eceb" name="adfaad805015736afd6d469fab365eceb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adfaad805015736afd6d469fab365eceb">&#9670;&#160;</a></span>~Component()</h2>
 

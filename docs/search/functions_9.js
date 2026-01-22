@@ -10,6 +10,6 @@ var searchData=
   ['loadfrommemoryrgba8_7',['LoadFromMemoryRGBA8',['../class_uni_dx_1_1_texture.html#a740419b40487d1d0c26e1af7f3318bc0',1,'UniDx::Texture']]],
   ['localmatrix_8',['localMatrix',['../class_uni_dx_1_1_transform.html#a113be418b5031d750d3bc03755f1643c',1,'UniDx::Transform']]],
   ['localtoworldmatrix_9',['localToWorldMatrix',['../class_uni_dx_1_1_transform.html#a4ff1065af3f435f0e5765e5a0fb742c1',1,'UniDx::Transform']]],
-  ['log_10',['Log',['../class_uni_dx_1_1_intern_pool.html#aa6175f4d5c50c03847e35fca19c09262',1,'UniDx::InternPool::Log()'],['../namespace_uni_dx_1_1_debug.html#aec0231ac0c0ccd634c7e3f9fdec6ca46',1,'UniDx::Debug::Log()']]],
+  ['log_10',['Log',['../namespace_uni_dx_1_1_debug.html#aec0231ac0c0ccd634c7e3f9fdec6ca46',1,'UniDx::Debug']]],
   ['lookrotation_11',['LookRotation',['../struct_uni_dx_1_1_quaternion.html#a1a898c876dd0aa87c0b4e92e926fd8cf',1,'UniDx::Quaternion']]]
 ];

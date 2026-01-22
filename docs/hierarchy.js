@@ -18,7 +18,6 @@ var hierarchy =
     [ "UniDx::ContactManifold", "struct_uni_dx_1_1_contact_manifold.html", null ],
     [ "UniDx::ContactPoint", "struct_uni_dx_1_1_contact_point.html", null ],
     [ "UniDx::GPULight", "struct_uni_dx_1_1_g_p_u_light.html", null ],
-    [ "std::hash&lt; UniDx::StringId &gt;", "structstd_1_1hash_3_01_uni_dx_1_1_string_id_01_4.html", null ],
     [ "UniDx::Input", "class_uni_dx_1_1_input.html", null ],
     [ "UniDx::InternPool", "class_uni_dx_1_1_intern_pool.html", null ],
     [ "UniDx::Keyframe", "struct_uni_dx_1_1_keyframe.html", null ],
@@ -72,6 +71,9 @@ var hierarchy =
       [ "UniDx::Property< bool >", "class_uni_dx_1_1_property.html", null ]
     ] ],
     [ "UniDx::ReadOnlyProperty&lt; T * &gt;", "class_uni_dx_1_1_read_only_property_3_01_t_01_5_01_4.html", null ],
+    [ "UniDx::ReadOnlyProperty&lt; u8string &gt;", "class_uni_dx_1_1_read_only_property.html", [
+      [ "UniDx::Property< u8string >", "class_uni_dx_1_1_property.html", null ]
+    ] ],
     [ "UniDx::ReadOnlyProperty&lt; UniDx::Quaternion &gt;", "class_uni_dx_1_1_read_only_property.html", [
       [ "UniDx::Property< UniDx::Quaternion >", "class_uni_dx_1_1_property.html", null ]
     ] ],
@@ -101,10 +103,12 @@ var hierarchy =
     [ "UniDx::StringId", "class_uni_dx_1_1_string_id.html", null ],
     [ "UniDx::SubMesh", "struct_uni_dx_1_1_sub_mesh.html", [
       [ "UniDx::OwnedSubMesh", "struct_uni_dx_1_1_owned_sub_mesh.html", [
-        [ "UniDx::SkinedSubMesh", "struct_uni_dx_1_1_skined_sub_mesh.html", null ]
+        [ "UniDx::SkinnedSubMesh", "struct_uni_dx_1_1_skinned_sub_mesh.html", null ]
       ] ]
     ] ],
     [ "UniDx::Time", "class_uni_dx_1_1_time.html", null ],
+    [ "UniDx::InternPool::TransparentEq", "struct_uni_dx_1_1_intern_pool_1_1_transparent_eq.html", null ],
+    [ "UniDx::InternPool::TransparentHash", "struct_uni_dx_1_1_intern_pool_1_1_transparent_hash.html", null ],
     [ "UniDx::VertexP", "struct_uni_dx_1_1_vertex_p.html", [
       [ "UniDx::VertexPC", "struct_uni_dx_1_1_vertex_p_c.html", null ],
       [ "UniDx::VertexPN", "struct_uni_dx_1_1_vertex_p_n.html", [

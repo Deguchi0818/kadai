@@ -6,7 +6,7 @@
 namespace UniDx {
 
 /**
- * @brief 3x4 の列優先行列（float4×3）
+ * @brief 3x4 の列ベクトル（行列×ベクトル）行優先（最初の行から順番）行列
  */
 struct alignas(16) BoneMat3x4
 {
@@ -26,7 +26,7 @@ struct alignas(16) BoneMat3x4
 		: c0(ic0), c1(ic1), c2(ic2)
 	{}
 
-	/** @brief Matrix4x4（row-major）から作る */
+	/// @brief Matrix4x4（row-major）から作る
 	static constexpr BoneMat3x4 FromMatrix4x4(const Matrix4x4& m) noexcept
 	{
 		return BoneMat3x4(
@@ -36,7 +36,7 @@ struct alignas(16) BoneMat3x4
 		);
 	}
 
-	/** @brief Matrix4x4 に戻す */
+	/// @brief Matrix4x4 に戻す
 	constexpr Matrix4x4 ToMatrix4x4() const noexcept
 	{
 		return Matrix4x4(
@@ -47,11 +47,11 @@ struct alignas(16) BoneMat3x4
 		);
 	}
 
-	/** @brief 平行移動成分 */
+	/// @brief 平行移動成分
 	constexpr Vector3 translation() const noexcept { return Vector3(c0.w, c1.w, c2.w); }
 	constexpr void setTranslation(const Vector3& t) noexcept { c0.w = t.x; c1.w = t.y; c2.w = t.z; }
 
-	/** @brief 点を変換（平行移動込み） */
+	/// @brief 点を変換（平行移動込み）
 	constexpr Vector3 TransformPoint(const Vector3& p) const noexcept
 	{
 		return Vector3(
@@ -61,7 +61,7 @@ struct alignas(16) BoneMat3x4
 		);
 	}
 
-	/** @brief 方向ベクトルを変換（平行移動なし） */
+	/// @brief 方向ベクトルを変換（平行移動なし）
 	constexpr Vector3 TransformVector(const Vector3& v) const noexcept
 	{
 		return Vector3(

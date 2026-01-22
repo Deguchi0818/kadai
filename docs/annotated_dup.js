@@ -1,8 +1,5 @@
 var annotated_dup =
 [
-    [ "std", "namespacestd.html", [
-      [ "hash&lt; UniDx::StringId &gt;", "structstd_1_1hash_3_01_uni_dx_1_1_string_id_01_4.html", "structstd_1_1hash_3_01_uni_dx_1_1_string_id_01_4" ]
-    ] ],
     [ "UniDx", "namespace_uni_dx.html", [
       [ "Keyframe", "struct_uni_dx_1_1_keyframe.html", "struct_uni_dx_1_1_keyframe" ],
       [ "AnimationCurve", "class_uni_dx_1_1_animation_curve.html", "class_uni_dx_1_1_animation_curve" ],
@@ -77,7 +74,7 @@ var annotated_dup =
       [ "Singleton", "class_uni_dx_1_1_singleton.html", "class_uni_dx_1_1_singleton" ],
       [ "SkinInstance", "struct_uni_dx_1_1_skin_instance.html", "struct_uni_dx_1_1_skin_instance" ],
       [ "VertexSkin", "struct_uni_dx_1_1_vertex_skin.html", "struct_uni_dx_1_1_vertex_skin" ],
-      [ "SkinedSubMesh", "struct_uni_dx_1_1_skined_sub_mesh.html", "struct_uni_dx_1_1_skined_sub_mesh" ],
+      [ "SkinnedSubMesh", "struct_uni_dx_1_1_skinned_sub_mesh.html", "struct_uni_dx_1_1_skinned_sub_mesh" ],
       [ "SkinnedMeshRenderer", "class_uni_dx_1_1_skinned_mesh_renderer.html", "class_uni_dx_1_1_skinned_mesh_renderer" ],
       [ "Sphere", "struct_uni_dx_1_1_sphere.html", "struct_uni_dx_1_1_sphere" ],
       [ "StringId", "class_uni_dx_1_1_string_id.html", "class_uni_dx_1_1_string_id" ],

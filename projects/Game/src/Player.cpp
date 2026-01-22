@@ -1,10 +1,11 @@
-#pragma once
+﻿#pragma once
 
 #include "Player.h"
 
 #include <UniDx/Input.h>
 #include <UniDx/Collider.h>
 #include <UniDx/Time.h>
+#include <UniDx/PrimitiveRenderer.h>
 
 #include "MainGame.h"
 
@@ -13,6 +14,37 @@ using namespace UniDx;
 
 namespace
 {
+    const StringId CoinName = StringId::intern("Coin");
+
+    // アニメショーンさせるボーン名
+    const StringId BoneName[] =
+    {
+        StringId::intern("LeftUpperArm"),
+        StringId::intern("RightUpperArm"),
+        StringId::intern("LeftUpperLeg"),
+        StringId::intern("RightUpperLeg"),
+        StringId::intern("Tail")
+    };
+    // アニメーションさせる角度の範囲（pitch, yaw, roll）
+    const Vector3 Range[] =
+    {
+        Vector3( 80,  0,  0),
+        Vector3(-80,  0,  0),
+        Vector3( 30,  0, 45),
+        Vector3(-30,  0, 45),
+        Vector3( 30,  0,  0),
+    };
+    // アニメーションさせる角度のオフセット（pitch, yaw, roll）
+    const Vector3 Offset[] =
+    {
+        Vector3(  0,  0, 30),
+        Vector3(  0,  0,-30),
+        Vector3(  0,  5,  0),
+        Vector3(  0, -5,  0),
+        Vector3( 20,  0,  0),
+    };
+    constexpr size_t BoneMax = sizeof(BoneName) / sizeof(StringId);
+    constexpr float animSpeed = 0.05f;
 }
 
 
@@ -131,9 +163,10 @@ void Player::OnTriggerExit(Collider* other)
 }
 
 
+// コライダーに当たったときのコールバック
 void Player::OnCollisionEnter(const Collision& collision)
 {
-    if (collision.collider->name == StringId::intern("Coin"))
+    if (collision.collider->name == CoinName)
     {
         MainGame::getInstance()->AddScore(1);
         Destroy(collision.collider->gameObject);

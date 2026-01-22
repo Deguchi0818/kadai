@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['setter_0',['Setter',['../class_uni_dx_1_1_property.html#a5b14002369f3ecdd9207c16a47c488b0',1,'UniDx::Property']]]
+  ['potentialpair_0',['PotentialPair',['../class_uni_dx_1_1_physics.html#ad872992d9e01ccfc3c85314f915f36a0',1,'UniDx::Physics']]]
 ];

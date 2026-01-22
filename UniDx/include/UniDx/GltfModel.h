@@ -1,4 +1,8 @@
-﻿#pragma once
+﻿/**
+ * @file GltfModel.h
+ * @brief glTF形式（.glb）のモデルデータを読み込んでレンダラーを生成する
+ */
+#pragma once
 
 #include <tiny_gltf.h>
 
@@ -7,10 +11,7 @@
 
 namespace UniDx {
 
-/**
- * @file GltfModel.h
- * @brief glTF形式（.glb）のモデルデータを読み込んでレンダラーを生成するコンポーネント
- */
+/// @brief glTF形式（.glb）のモデルデータを読み込んでレンダラーを生成するコンポーネント
 class GltfModel : public Component
 {
 public:
@@ -90,10 +91,10 @@ public:
             for (auto& sub : mesh->submesh)
             {
                 auto buf = sub->createBuffer<TVertex>(
+                    // バッファを作るときにスキニング用のデータもコピー
                     [sub](auto buf)
-                    { static_cast<SkinedSubMesh&>(*sub).copySkinTo(buf); }
+                    { static_cast<SkinnedSubMesh&>(*sub).copySkinTo(buf); }
                 );
-//                static_cast<SkinedSubMesh&>(*sub).copySkinTo(std::span<TVertex>(*buf));
             }
         }
         return true;
@@ -121,9 +122,10 @@ protected:
     std::unordered_map<int, Transform*> nodes;
     std::unordered_map<int, SkinInstance> skinInstance;
 
-    bool load_(const char* filePath, bool makeTextureMaterial, std::shared_ptr<Shader> shader);
-    void createNodeRecursive(const tinygltf::Model& model, int nodeIndex, GameObject* parentGO, bool attachIncludeMaterial);
-    std::shared_ptr<Texture> GetOrCreateTextureFromGltf_(int textureIndex, bool isSRGB);
+    virtual bool load_(const char* filePath, bool makeTextureMaterial, std::shared_ptr<Shader> shader);
+    virtual void readPrimitive(UniDx::Mesh* mesh, const tinygltf::Primitive& primitive);
+    virtual void createNodeRecursive(const tinygltf::Model& model, int nodeIndex, GameObject* parentGO, bool attachIncludeMaterial);
+    virtual std::shared_ptr<Texture> getOrCreateTextureFromGltf_(int textureIndex, bool isSRGB);
 };
 
 

@@ -69,7 +69,7 @@ var searchData=
   ['contacts_66',['contacts',['../struct_uni_dx_1_1_collision.html#a2a35acc31ad44279b327e3b12f57c483',1,'UniDx::Collision::contacts'],['../struct_uni_dx_1_1_contact_manifold.html#a081564785891dae52e3b4aecd6bf9d7a',1,'UniDx::ContactManifold::contacts']]],
   ['copycolorto_67',['copyColorTo',['../struct_uni_dx_1_1_sub_mesh.html#ae3c7331e058f12ebd500df334ee30875',1,'UniDx::SubMesh']]],
   ['copynormalto_68',['copyNormalTo',['../struct_uni_dx_1_1_sub_mesh.html#a472b5c67216e96c78e36e9199adc5c62',1,'UniDx::SubMesh']]],
-  ['copyskinto_69',['copySkinTo',['../struct_uni_dx_1_1_skined_sub_mesh.html#ab38e71dc4ef437c1b628ede9f001e1fd',1,'UniDx::SkinedSubMesh::copySkinTo(std::span&lt; TVertex &gt; vertex)'],['../struct_uni_dx_1_1_skined_sub_mesh.html#aba8c41f4ca9ccd8f1423e5bc30e30309',1,'UniDx::SkinedSubMesh::copySkinTo(std::span&lt; VertexSkin &gt; vertex)']]],
+  ['copyskinto_69',['copySkinTo',['../struct_uni_dx_1_1_skinned_sub_mesh.html#ae4ff570eff15308f84d0047adaac1e42',1,'UniDx::SkinnedSubMesh::copySkinTo(std::span&lt; TVertex &gt; vertex)'],['../struct_uni_dx_1_1_skinned_sub_mesh.html#a5b2ff53568a73147738e9539b07e2807',1,'UniDx::SkinnedSubMesh::copySkinTo(std::span&lt; VertexSkin &gt; vertex)']]],
   ['copytangentto_70',['copyTangentTo',['../struct_uni_dx_1_1_sub_mesh.html#ab06ef6a5d7c4c40c8caff5e0a6350566',1,'UniDx::SubMesh']]],
   ['copyto_71',['copyTo',['../struct_uni_dx_1_1_sub_mesh.html#a69f96589a5b636a499c993e3076667bf',1,'UniDx::SubMesh']]],
   ['copyuv1to_72',['copyUV1To',['../struct_uni_dx_1_1_sub_mesh.html#ad06d58e9aeae6081b783b2d6a7acf175',1,'UniDx::SubMesh']]],

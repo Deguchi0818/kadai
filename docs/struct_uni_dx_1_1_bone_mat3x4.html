@@ -18,6 +18,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -92,7 +93,7 @@ $(function(){initNavTree('struct_uni_dx_1_1_bone_mat3x4.html','','struct_uni_dx_
 </div><!--header-->
 <div class="contents">
 
-<p>3x4 の列優先行列（float4×3）  
+<p>3x4 の列ベクトル（行列×ベクトル）行優先（最初の行から順番）行列  
  <a href="#details">[詳解]</a></p>
 
 <p><code>#include &lt;<a class="el" href="_bone_math_8h_source.html">BoneMath.h</a>&gt;</code></p>
@@ -102,7 +103,7 @@ $(function(){initNavTree('struct_uni_dx_1_1_bone_mat3x4.html','','struct_uni_dx_
 <tr class="memitem:a7b434c390fcf03ac6820a8ff7ed22df0" id="r_a7b434c390fcf03ac6820a8ff7ed22df0"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b434c390fcf03ac6820a8ff7ed22df0">BoneMat3x4</a> () noexcept</td></tr>
 <tr class="memitem:ac913f251018b045657d0c3616aaa6184" id="r_ac913f251018b045657d0c3616aaa6184"><td class="memItemLeft" align="right" valign="top">constexpr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac913f251018b045657d0c3616aaa6184">BoneMat3x4</a> (const <a class="el" href="struct_uni_dx_1_1_vector4.html">Vector4</a> &amp;ic0, const <a class="el" href="struct_uni_dx_1_1_vector4.html">Vector4</a> &amp;ic1, const <a class="el" href="struct_uni_dx_1_1_vector4.html">Vector4</a> &amp;ic2) noexcept</td></tr>
 <tr class="memitem:af2ba747ee510baab844352b50e3943cc" id="r_af2ba747ee510baab844352b50e3943cc"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="struct_uni_dx_1_1_matrix4x4.html">Matrix4x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2ba747ee510baab844352b50e3943cc">ToMatrix4x4</a> () const noexcept</td></tr>
-<tr class="memdesc:af2ba747ee510baab844352b50e3943cc"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_uni_dx_1_1_matrix4x4.html" title="4x4 行列 (行優先)">Matrix4x4</a> に戻す  <br /></td></tr>
+<tr class="memdesc:af2ba747ee510baab844352b50e3943cc"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_uni_dx_1_1_matrix4x4.html" title="4x4 行列 (行ベクトル行優先)">Matrix4x4</a> に戻す  <br /></td></tr>
 <tr class="memitem:a8cf4d9c6d7c9ea5173d9999e6309b935" id="r_a8cf4d9c6d7c9ea5173d9999e6309b935"><td class="memItemLeft" align="right" valign="top">constexpr <a class="el" href="struct_uni_dx_1_1_vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cf4d9c6d7c9ea5173d9999e6309b935">translation</a> () const noexcept</td></tr>
 <tr class="memdesc:a8cf4d9c6d7c9ea5173d9999e6309b935"><td class="mdescLeft">&#160;</td><td class="mdescRight">平行移動成分  <br /></td></tr>
 <tr class="memitem:af3c949468ab9763887ec7e268d136eff" id="r_af3c949468ab9763887ec7e268d136eff"><td class="memItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3c949468ab9763887ec7e268d136eff">setTranslation</a> (const <a class="el" href="struct_uni_dx_1_1_vector3.html">Vector3</a> &amp;t) noexcept</td></tr>
@@ -127,7 +128,7 @@ $(function(){initNavTree('struct_uni_dx_1_1_bone_mat3x4.html','','struct_uni_dx_
 <tr class="memitem:a00c0f9e2eaa757b7aad5e57db3f5b4aa" id="r_a00c0f9e2eaa757b7aad5e57db3f5b4aa"><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="#a7b434c390fcf03ac6820a8ff7ed22df0">BoneMat3x4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00c0f9e2eaa757b7aad5e57db3f5b4aa">identity</a> = <a class="el" href="#a7b434c390fcf03ac6820a8ff7ed22df0">BoneMat3x4</a>(<a class="el" href="struct_uni_dx_1_1_vector4.html">Vector4</a>(1, 0, 0, 0), <a class="el" href="struct_uni_dx_1_1_vector4.html">Vector4</a>(0, 1, 0, 0), <a class="el" href="struct_uni_dx_1_1_vector4.html">Vector4</a>(0, 0, 1, 0))</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">詳解</h2>
-<div class="textblock"><p>3x4 の列優先行列（float4×3） </p>
+<div class="textblock"><p>3x4 の列ベクトル（行列×ベクトル）行優先（最初の行から順番）行列 </p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">構築子と解体子</h2>
 <a id="a7b434c390fcf03ac6820a8ff7ed22df0" name="a7b434c390fcf03ac6820a8ff7ed22df0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7b434c390fcf03ac6820a8ff7ed22df0">&#9670;&#160;</a></span>BoneMat3x4() <span class="overload">[1/2]</span></h2>
@@ -264,7 +265,7 @@ $(function(){initNavTree('struct_uni_dx_1_1_bone_mat3x4.html','','struct_uni_dx_
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="struct_uni_dx_1_1_matrix4x4.html" title="4x4 行列 (行優先)">Matrix4x4</a> に戻す </p>
+<p><a class="el" href="struct_uni_dx_1_1_matrix4x4.html" title="4x4 行列 (行ベクトル行優先)">Matrix4x4</a> に戻す </p>
 
 </div>
 </div>

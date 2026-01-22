@@ -1,0 +1,70 @@
+diff a/projects/Game/src/Player.cpp b/projects/Game/src/Player.cpp	(rejected hunks)
+@@ -22,16 +54,29 @@ void Player::OnEnable()
+     assert(rb != nullptr);
+ 
+     rb->gravityScale = 1.5f;
+-    animFrame = 0.0f;
+     GetComponent<Collider>(true)->bounciness = 0.0f;
++
++    // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã•ã›ã‚‹ãƒœãƒ¼ãƒ³ã‚’æ¤œç´¢ã—ã€åˆæœŸå§¿å‹¢ã®å›è»¢ã‚’è¨˜éŒ²
++    bones.resize(BoneMax, nullptr);
++    initialRotate.resize(BoneMax);
++    for (int i = 0; i < BoneMax; ++i)
++    {
++        GameObject * o = gameObject->Find([i](GameObject* p) { return p->name == BoneName[i]; });
++        if (o != nullptr)
++        {
++            bones[i] = o->transform;
++            initialRotate[i] = o->transform->localRotation;
++        }
++    }
++    animFrame = 0.0f;
+ }
+ 
+ 
+ void Player::Update()
+ {
+-    const float moveSpeed = 4;
++    const float moveSpeed = 5;
+ 
+-    // ‘€ì•ûŒü
++    // æ“ä½œæ–¹å‘
+     Vector3 cont;
+     if (Input::GetKey(Keyboard::A))
+     {
+@@ -60,10 +105,10 @@ void Player::Update()
+     }
+     cont = cont.normalized();
+ 
+-    // ƒJƒƒ‰•ûŒü‚ğl—¶‚µ‚Ä‘¬“xƒxƒNƒgƒ‹‚ğŒvZ
++    // ã‚«ãƒ¡ãƒ©æ–¹å‘ã‚’è€ƒæ…®ã—ã¦é€Ÿåº¦ãƒ™ã‚¯ãƒˆãƒ«ã‚’è¨ˆç®—
+     Vector3 camF = Camera::main->transform->forward;
+     float camAngle = std::atan2(camF.x, camF.z) * UniDx::Rad2Deg;
+-    Vector3 velocity = (cont.normalized() * moveSpeed) * Quaternion::AngleAxis(camAngle, Vector3::up);
++    Vector3 velocity = cont * moveSpeed * Quaternion::AngleAxis(camAngle, Vector3::up);
+     float vAngle = std::atan2(velocity.x, velocity.z) * UniDx::Rad2Deg;
+ 
+     rb->linearVelocity = velocity;
+@@ -72,8 +117,21 @@ void Player::Update()
+         rb->rotation = Quaternion::Euler(0, vAngle, 0);
+     }
+ 
+-    // ƒAƒjƒi–¢‘Î‰j
++    // ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚¢ãƒ‹ãƒ¡
+     animFrame += cont.magnitude();
++    for(int i = 0; i < bones.size(); ++i)
++    {
++        auto& bone = bones[i];
++        if(bone == nullptr) continue;
++
++        Quaternion r = bone->localRotation;
++        float sn = std::sin(animFrame * animSpeed);
++        r = Quaternion::Euler(
++            sn * Range[i].x + Offset[i].x,
++            sn * Range[i].y + Offset[i].y,
++            sn * Range[i].z + Offset[i].z);
++        bone->localRotation = r * initialRotate[i]; // é ‚ç‚¹Ã—å›è»¢Ã—åˆæœŸå§¿å‹¢
++    }
+ }
+ 
+ 

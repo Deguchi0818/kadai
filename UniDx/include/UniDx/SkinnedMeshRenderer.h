@@ -39,7 +39,7 @@ struct VertexSkin : public VertexPN
 };
 
 
-struct SkinedSubMesh : public OwnedSubMesh
+struct SkinnedSubMesh : public OwnedSubMesh
 {
     std::vector<VertexSkin::Joints> jointsData;
     std::vector<VertexSkin::Weights> weightsData;
