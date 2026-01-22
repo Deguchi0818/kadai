@@ -21,4 +21,7 @@ public:
 
 private:
     float animFrame;
+    UniDx::Light* flashlight = nullptr;
+    float battery = 1.0f;
+    bool isLightOn = false;
 };

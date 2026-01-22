@@ -214,7 +214,7 @@ unique_ptr<UniDx::Scene> MainGame::CreateScene()
     font->Load(u8"resource/M PLUS 1.spritefont");
     auto textMesh = make_unique<TextMesh>();
     textMesh->font = font;
-    textMesh->text = u8"WASD:いどう\nIJKL:カメラ\nOP:ライト";
+    textMesh->text = u8"WASD:いどう\nIJKL:カメラ\nF:ライト";
 
     auto textObj = make_unique<GameObject>(u8"テキスト", textMesh);
     textObj->transform->localPosition = Vector3(100, 20, 0);
@@ -227,6 +227,14 @@ unique_ptr<UniDx::Scene> MainGame::CreateScene()
 
     auto scoreTextObj = make_unique<GameObject>(u8"スコア", scoreMesh);
     scoreTextObj->transform->localPosition = Vector3(480, 20, 0);
+
+    auto batteryMesh = make_unique<TextMesh>();
+    batteryMesh->font = font;
+    batteryMesh->text = u8"Battery: 100%";
+    batteryTextMesh = batteryMesh.get();
+
+    auto batteryTextObj = make_unique<GameObject>(u8"バッテリーUI", batteryMesh);
+    batteryTextObj->transform->localPosition = Vector3(480, 60, 0);
 
     auto canvas = make_unique<Canvas>();
     canvas->LoadDefaultMaterial(u8"resource");
@@ -252,7 +260,8 @@ unique_ptr<UniDx::Scene> MainGame::CreateScene()
         make_unique<GameObject>(u8"UI",
             move(canvas),
             move(textObj),
-            move(scoreTextObj)
+            move(scoreTextObj),
+            move(batteryTextObj)
         )
     );
 }
@@ -267,4 +276,12 @@ void MainGame::AddScore(int n)
 {
     score += n;
     scoreTextMesh->text = ToString(score);
+}
+
+void MainGame::UpdetBattery(float battery)
+{
+    int percent = static_cast<int>(battery * 100.0f);
+    if (percent < 0) percent = 0;
+
+    batteryTextMesh->text = u8"Battery: " + ToString(percent) + u8"%";
 }

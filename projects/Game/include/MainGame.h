@@ -19,10 +19,13 @@ public:
 
     unique_ptr<UniDx::Scene> CreateScene();
 
+    void UpdetBattery(float battery);
+
 protected:
     int score = 0;
     unique_ptr<UniDx::GameObject> mapObj;
     UniDx::TextMesh* scoreTextMesh;
+    UniDx::TextMesh* batteryTextMesh;
 
     void createMap();
 };

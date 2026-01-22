@@ -24,6 +24,12 @@ void Player::OnEnable()
     rb->gravityScale = 1.5f;
     animFrame = 0.0f;
     GetComponent<Collider>(true)->bounciness = 0.0f;
+    auto& children = transform->getChildGameObjects();
+    for (auto& child : children)
+    {
+        flashlight = child->GetComponent<Light>();
+        if (flashlight) break;
+    }
 }
 
 
@@ -77,6 +83,36 @@ void Player::Update()
 
     // アニメ（未対応）
     animFrame += cont.magnitude();
+
+    // ライトの子オブジェクトを探す
+    if (!flashlight)
+    {
+        auto& children = transform->getChildGameObjects();
+        for (auto& child : children)
+        {
+            flashlight = child->GetComponent<Light>();
+            if (flashlight) break;
+        }
+    }
+
+    // 懐中電灯の処理
+    if (flashlight) 
+    {
+        if (Input::GetKeyDown(Keyboard::F))
+        {
+            isLightOn = !isLightOn;
+        }
+        if (isLightOn && battery > 0.0f)
+        {
+            battery -= Time::deltaTime * 0.016f;
+            flashlight->intensity = 2.0f;
+        }
+        if (!isLightOn || battery <= 0) 
+        {
+            flashlight->intensity = 0;
+        }
+        MainGame::getInstance()->UpdetBattery(battery);
+    }
 }
 
 
